@@ -1,9 +1,7 @@
 // Load needed modules
 var express = require('express');
 var person = require('./person');
-
-// Server constants
-var SERVER_PORT = 3000;
+var config = require('./config');
 
 // Returns first item from an Array
 Array.prototype.first = function () {
@@ -42,5 +40,5 @@ app.del('/person/:id', person.delete);
 
 //More resources here...
 
-app.listen(SERVER_PORT);
-print('Server is running on port: ' + SERVER_PORT);
+app.listen(config.SERVER_PORT);
+console.log('Server is running on port: ' + config.SERVER_PORT);
