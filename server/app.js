@@ -28,7 +28,7 @@ app.use(function (req, res, next) {
 
 // Root path should redirect to index.html
 app.get('/', function(req, res){
-  res.redirect('index.html');
+  res.redirect('source/index.html');
 });
 
 // Person

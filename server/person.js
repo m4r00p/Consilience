@@ -9,7 +9,7 @@ persons.push({
   "id": "1",
   "fname": "Joe",
   "lname": "Brown",
-  "dob": "1987-03-04",
+  "dob": "1344788935419",
   "wage": "100",
   "location": "US"
 });
@@ -107,8 +107,8 @@ exports.create = function(req, res){
   person.id = (persons.length + 1).toString();
   persons.push(person)
 
-  res.set('Content-Type', 'text/plain');
-  res.send('OK');
+  res.set('Content-Type', 'application/json');
+  res.send(person);
 };
 
 // Updates entry of given id with given data
@@ -145,8 +145,8 @@ exports.update = function(req, res){
     person[key] = data[key];
   }
 
-  res.set('Content-Type', 'text/plain');
-  res.send('OK');
+  res.set('Content-Type', 'application/json');
+  res.send(person);
 };
 
 // Removes entry of given id
