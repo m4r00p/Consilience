@@ -1,24 +1,27 @@
+/**
+ * @fileoverview Main application file.
+ */
+
 // Load needed modules
-var express = require('express');
-var person = require('./person');
-var config = require('./config');
+var express = require('express'),
+    person = require('./person'),
+    config = require('./config');
 
-// Returns first item from an Array
-Array.prototype.first = function () {
-  return this[0];
-};
 
+// create application object
 var app = express();
+
+
 // Enable statics
 app.use(express.static(__dirname + '/../frontend/'));
 app.use(express.bodyParser());
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   if (!req.body) {
     // Concatenates input in the case of xml stream.
     req.rawBody = '';
     req.setEncoding('utf8');
-    req.on('data', function (chunk) { console.log('data'); req.rawBody += chunk; });
-    req.on('end', function () { console.log('end'); next(); });
+    req.on('data', function(chunk) { req.rawBody += chunk; });
+    req.on('end', function() { next(); });
   } else {
     // JSON passed so just procceed not additional work is needed.
     next();
@@ -27,18 +30,19 @@ app.use(function (req, res, next) {
 
 
 // Root path should redirect to index.html
-app.get('/', function(req, res){
+app.get('/', function(req, res) {
   res.redirect('source/index.html');
 });
 
-// Person
+
+// Define person service
 app.get('/person', person.list);
 app.post('/person', person.create);
 app.get('/person/:id.:format', person.read);
 app.put('/person/:id', person.update);
 app.del('/person/:id', person.delete);
 
-//More resources here...
 
+// Run the server
 app.listen(config.SERVER_PORT);
 console.log('Server is running on port: ' + config.SERVER_PORT);

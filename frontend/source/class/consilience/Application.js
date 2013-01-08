@@ -95,7 +95,9 @@ qx.Class.define("consilience.Application",
         this.isNew = false;
 
         for (var key in result) {
-          this[key] = result[key];
+          if (result.hasOwnProperty(key)) {
+            this[key] = result[key];
+          }
         }
 
         // Dummy event driven support, should be done with more generic way
