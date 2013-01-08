@@ -1,6 +1,6 @@
 # README
 
-1. Frontend
+##Frontend
 
 Frontend was build using http://qooxdoo.org/ framework.
 
@@ -27,7 +27,7 @@ Then code will be optimize and put into build directory.
 
 
 
-2. Backend
+##Backend
 
 To run node app u need to install following dependenties:
  * expressjs (npm install express)
